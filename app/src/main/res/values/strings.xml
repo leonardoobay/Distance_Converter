@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">UnitConverter</string>
+    <string name="SecondUnit">Choose Unit you want to convert to:</string>
+    <string name="FirstUnit">Choose Unit You want to convert from:</string>
+    <string name="ConvertedAnswer"/>
+    <string-array name="UnitsFROM">
+        <item>Miles</item>
+        <item>Feet</item>
+        <item>Inches</item>
+        <item>Yard</item>
+        <item>Kilometer</item>
+        <item>Meter</item>
+        <item>Centimeter</item>
+        <item>Millimeter</item>
+    </string-array>
+
+    <string-array name="UnitsTO">
+        <item>Miles</item>
+        <item>Feet</item>
+        <item>Inches</item>
+        <item>Yard</item>
+        <item>Kilometer</item>
+        <item>Meter</item>
+        <item>Centimeter</item>
+        <item>Millimeter</item>
+    </string-array>
+</resources>
