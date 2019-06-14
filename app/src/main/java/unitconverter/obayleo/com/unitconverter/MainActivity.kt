@@ -4,59 +4,72 @@ import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.*
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
+
+    lateinit var result: TextView
+    lateinit var firstChoice: Spinner
+    lateinit var firstUnitGiven : TextView
+    lateinit var secondUnitGiven : TextView
+    lateinit var secondChoice: Spinner
+    lateinit var unitActualValue: TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val spinner: Spinner = findViewById(R.id.MeasurementTypeFROM)
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.UnitsFROM,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
+        result = findViewById(R.id.ConvertedResult)
+        firstChoice = findViewById(R.id.MeasurementTypeFROM)
+        secondChoice = findViewById(R.id.MeasurementTypeTO)
+        unitActualValue = findViewById(R.id.ReceivingNumber)
+        var actualValue = unitActualValue.getText().toString();
+
+
+
+        val firstAdapter = ArrayAdapter.createFromResource(this, R.array.UnitsFROM, android.R.layout.simple_spinner_item)
+        firstAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        firstChoice.setAdapter(firstAdapter)
+        firstChoice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                firstUnitGiven.text = "Please Select an Item"
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                firstUnitGiven.text = firstAdapter.getItem(position)
+            }
+
+
         }
 
-        val spinner2: Spinner = findViewById(R.id.MeasurementTypeTO)
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.UnitsTO,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner2.adapter = adapter
+
+        val secondAdapter = ArrayAdapter.createFromResource(this, R.array.UnitsTO, android.R.layout.simple_spinner_item)
+        secondAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        secondChoice.setAdapter(secondAdapter)
+//        setContentView(R.layout.activity_main)
+        secondChoice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                secondUnitGiven.text = "Please Select an Item"
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                secondUnitGiven.text = secondAdapter.getItem(position)
+            }
+
+
         }
+
+
+        if (actualValue.isEmpty() ){
+            Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 }
 
-//private const val TAG = "MyActivity"
-//
-//Log.i(TAG, "MyClass.getView() — get item number $position")
-
-class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener {
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        // An item was selected. You can retrieve the selected item using
-         parent.getItemAtPosition(pos)
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
-        // Another interface callback
-    }
-}
 
 
 // 1 mile 5280 feet
