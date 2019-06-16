@@ -3,6 +3,7 @@
     <string name="SecondUnit">Choose Unit you want to convert to:</string>
     <string name="FirstUnit">Choose Unit You want to convert from:</string>
     <string name="ConvertedAnswer"/>
+    <string name="converterbutton">Convert</string>
     <string-array name="UnitsFROM">
         <item>Miles</item>
         <item>Feet</item>

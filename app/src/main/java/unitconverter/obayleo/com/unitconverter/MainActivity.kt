@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var secondChoice: Spinner
     lateinit var unitActualValue: TextView
     lateinit var converterBox : Button
-
+    lateinit var actualValue: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         secondChoice = findViewById(R.id.MeasurementTypeTO)
         unitActualValue = findViewById(R.id.ReceivingNumber)
         converterBox = findViewById(R.id.convertButton)
-        var actualValue = unitActualValue.getText().toString();
+        actualValue = unitActualValue.getText().toString();
 
 
 
@@ -72,16 +72,103 @@ class MainActivity : AppCompatActivity() {
         }
 
         converterBox.setOnClickListener(){
-            Toast.makeText(this, "Its toast!", Toast.LENGTH_SHORT).show();
+                    if (unitActualValue.length() == 0 ){
+            Toast.makeText(applicationContext,"Please Input a Numerical Value",Toast.LENGTH_SHORT).show()
         }
-//        if (actualValue.isEmpty() ){
-//            Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
-//        }
-//        else if  (! (actualValue.isEmpty() ))
-//        {
-//            Toast.makeText(applicationContext,"full",Toast.LENGTH_SHORT).show()
-//
-//        }
+        else {
+                        // do conversions  if else statement hell
+
+                        var DoubleNum: Double = unitActualValue.text.toString().toDouble()
+                      
+                        when (firstUnitGiven) {
+                            "Miles"          ->   when (secondUnitGiven) {
+                                "Miles"          -> result.text = DoubleNum.toString()
+                                "Feet"          -> result.text =  (DoubleNum * 5280).toString()
+                                "Inches"          -> result.text =  (DoubleNum * 63360).toString()
+                                "Yard"          -> result.text =  (DoubleNum * 1760).toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 1.60934).toString()
+                                "Meter"          -> result.text =  (DoubleNum * 1609.34).toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 160934).toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 1609344).toString()
+                            }
+
+
+                            "Feet"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 0.000189394).toString()
+                                "Feet"          -> result.text =   DoubleNum.toString()
+                                "Inches"          -> result.text =  (DoubleNum * 12).toString()
+                                "Yard"          -> result.text =  (DoubleNum * 0.333333 ).toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 0.0003048).toString()
+                                "Meter"          -> result.text =  (DoubleNum * 0.3048).toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 30.48).toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 304.8).toString()
+                            }
+                            "Inches"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 00.0000157828).toString()
+                                "Feet"          -> result.text =  (DoubleNum * 0.0833333).toString()
+                                "Inches"          -> result.text =  DoubleNum.toString()
+                                "Yard"          -> result.text =  (DoubleNum * 0.0277778).toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 0.0000254).toString()
+                                "Meter"          -> result.text =  (DoubleNum * 0.0254).toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 2.54).toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 25.4).toString()
+                            }
+                            "Yard"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 0.000568182).toString()
+                                "Feet"          -> result.text =  (DoubleNum * 3).toString()
+                                "Inches"          -> result.text =  (DoubleNum * 36).toString()
+                                "Yard"          -> result.text =  DoubleNum.toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 0.0009144).toString()
+                                "Meter"          -> result.text =  (DoubleNum * 0.9144).toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 91.44).toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 914.4).toString()
+                            }
+                            "Kilometer"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 0.621371).toString()
+                                "Feet"          -> result.text =  (DoubleNum * 3280.84).toString()
+                                "Inches"          -> result.text =  (DoubleNum * 39370.1).toString()
+                                "Yard"          -> result.text =  (DoubleNum * 1093.61).toString()
+                                "Kilometer"          -> result.text = DoubleNum.toString()
+                                "Meter"          -> result.text =  (DoubleNum * 1000).toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 100000).toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 1000000).toString()
+                            }
+                            "Meter"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 0.000621371).toString()
+                                "Feet"          -> result.text =  (DoubleNum * 3.28084).toString()
+                                "Inches"          -> result.text =  (DoubleNum * 39.3701).toString()
+                                "Yard"          -> result.text =  (DoubleNum * 1.09361).toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 0.001).toString()
+                                "Meter"          -> result.text =  DoubleNum.toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 100).toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 1000).toString()
+                            }
+                            "Centimeter"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 0.0000062137).toString()
+                                "Feet"          -> result.text =  (DoubleNum * 0.0328084).toString()
+                                "Inches"          -> result.text =  (DoubleNum * 0.393701).toString()
+                                "Yard"          -> result.text =  (DoubleNum * 0.0109361).toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 0.00001).toString()
+                                "Meter"          -> result.text =  (DoubleNum * 0.01).toString()
+                                "Centimeter"          -> result.text =  DoubleNum.toString()
+                                "Millimeter"          -> result.text =  (DoubleNum * 10).toString()
+                            }
+                            "Millimeter"          -> when (secondUnitGiven) {
+                                "Miles"          -> result.text = (DoubleNum * 0.000000621371).toString()
+                                "Feet"          -> result.text =  (DoubleNum * 0.00328084).toString()
+                                "Inches"          -> result.text =  (DoubleNum * 0.0393701).toString()
+                                "Yard"          -> result.text =  (DoubleNum * 0.00109361).toString()
+                                "Kilometer"          -> result.text =  (DoubleNum * 0.000001 ).toString()
+                                "Meter"          -> result.text =  (DoubleNum * 0.001).toString()
+                                "Centimeter"          -> result.text =  (DoubleNum * 0.1).toString()
+                                "Millimeter"          -> result.text =  DoubleNum.toString()
+                            }
+                        }
+
+
+
+        }
+        }
 
 
 
