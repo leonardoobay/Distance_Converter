@@ -3,6 +3,7 @@ package unitconverter.obayleo.com.unitconverter
 import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 
@@ -10,10 +11,11 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var result: TextView
     lateinit var firstChoice: Spinner
-    lateinit var firstUnitGiven : TextView
-    lateinit var secondUnitGiven : TextView
+    lateinit var firstUnitGiven : String
+    lateinit var secondUnitGiven : String
     lateinit var secondChoice: Spinner
     lateinit var unitActualValue: TextView
+    lateinit var converterBox : Button
 
 
 
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         firstChoice = findViewById(R.id.MeasurementTypeFROM)
         secondChoice = findViewById(R.id.MeasurementTypeTO)
         unitActualValue = findViewById(R.id.ReceivingNumber)
+        converterBox = findViewById(R.id.convertButton)
         var actualValue = unitActualValue.getText().toString();
 
 
@@ -34,11 +37,14 @@ class MainActivity : AppCompatActivity() {
         firstChoice.setAdapter(firstAdapter)
         firstChoice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                firstUnitGiven.text = "Please Select an Item"
+                firstUnitGiven = "Please Select an Item"
+                Log.d("FIRSTY", firstUnitGiven)
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                firstUnitGiven.text = firstAdapter.getItem(position)
+                firstUnitGiven = firstAdapter.getItem(position).toString()
+                Log.d("FIRSTY", firstUnitGiven)
+
             }
 
 
@@ -51,20 +57,33 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_main)
         secondChoice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                secondUnitGiven.text = "Please Select an Item"
+                secondUnitGiven = "Please Select an Item"
+                Log.d("FIRSTYYYY", secondUnitGiven)
+
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                secondUnitGiven.text = secondAdapter.getItem(position)
+                secondUnitGiven = secondAdapter.getItem(position).toString()
+                Log.d("FIRSTYYYY", secondUnitGiven)
+
             }
 
 
         }
 
-
-        if (actualValue.isEmpty() ){
-            Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+        converterBox.setOnClickListener(){
+            Toast.makeText(this, "Its toast!", Toast.LENGTH_SHORT).show();
         }
+//        if (actualValue.isEmpty() ){
+//            Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+//        }
+//        else if  (! (actualValue.isEmpty() ))
+//        {
+//            Toast.makeText(applicationContext,"full",Toast.LENGTH_SHORT).show()
+//
+//        }
+
+
 
 
     }
