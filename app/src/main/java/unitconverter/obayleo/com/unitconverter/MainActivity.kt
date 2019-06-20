@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                         // do conversions  if else statement hell
 
                         var DoubleNum: Double = unitActualValue.text.toString().toDouble()
-                      
+
                         when (firstUnitGiven) {
                             "Miles"          ->   when (secondUnitGiven) {
                                 "Miles"          -> result.text = DoubleNum.toString()
